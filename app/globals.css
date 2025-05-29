@@ -5,22 +5,64 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+button {
+  cursor: pointer;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer {
+  .btn {
+    @apply text-white    duration-150;
+  }
+  .btn-explore {
+    @apply absolute top-[60%] left-[50%] text-white font-semibold text-xl bg-black rounded-full p-6 hover:px-8 cursor-pointer duration-200 -translate-[50%] max-md:text-lg max-md:p-3;
+  }
+  .error {
+    @apply text-red-500  text-sm;
   }
 }
+.background-edit {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.cart-shadow {
+  box-shadow: 0 0 13px 0px #00000057;
+}
+.hero {
+  background-image: url(/online-shopping-concept.jpg);
+  background-position: center;
+}
+.contact-hero {
+  background-image: url(/contact-cover.webp);
+  background-position: center;
+}
+.about-hero {
+  background-image: url(/about-cover.jpg);
+  background-position: center;
+}
+.profile-hero {
+  background-image: url(/dashboard-cover.jpg);
+  background-position: center;
+}
+.men {
+  background-image: url(/men-cover.jpg);
+  background-position: center;
+}
+.women {
+  background-image: url(/women-cover.jpg);
+  background-position: center;
+}
+.jewelery {
+  background-image: url(/jewelry-cover.jpg);
+  background-position: center;
+}
+.elecreonics {
+  background-image: url(/elect-cover.jpg);
+  background-position: center;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.btn:hover {
+  color: rgb(107, 107, 193);
+  background-color: transparent;
+}
+.active {
+  color: rgb(107, 107, 193);
 }
