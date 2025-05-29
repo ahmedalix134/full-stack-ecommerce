@@ -1,3 +1,4 @@
+"use server";
 import Image from "next/image";
 import img from "@/public/black-friday-shopping.jpg";
 import ProductDetails from "./ProductDetails";

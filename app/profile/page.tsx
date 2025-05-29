@@ -51,7 +51,7 @@ const profile = async () => {
         <h2 className="text-2xl">Your Products</h2>
         <div className="shadow  flex px-5 flex-wrap gap-5 justify-center ">
           {userProducts.map((p) => (
-            <Item key={p._id} fakeproduct={p} />
+            <Item key={p._id.toString()} fakeproduct={p} />
           ))}
         </div>
       </div>
