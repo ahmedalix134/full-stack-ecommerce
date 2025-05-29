@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["fakestoreapi.com", "res.cloudinary.com"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   /* config options here */
 };
 

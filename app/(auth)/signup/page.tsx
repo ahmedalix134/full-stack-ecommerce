@@ -47,18 +47,21 @@ const Signup = () => {
               placeholder="Password"
               className="border border-gray-300 p-2 rounded"
             />
-            {state?.errors && Array.isArray((state.errors as any).password) && (
-              <div className="error">
-                <p>password must be : </p>
-                <ul>
-                  {(state.errors as { password?: string[] }).password?.map(
-                    (error: string, index: number) => (
-                      <li key={index}>{error}</li>
-                    )
-                  )}
-                </ul>
-              </div>
-            )}
+            {state?.errors &&
+              Array.isArray(
+                (state.errors as { password?: string[] }).password
+              ) && (
+                <div className="error">
+                  <p>password must be : </p>
+                  <ul>
+                    {(state.errors as { password?: string[] }).password?.map(
+                      (error: string, index: number) => (
+                        <li key={index}>{error}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="confirmPassword">Confirm Password</label>

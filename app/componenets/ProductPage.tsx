@@ -3,6 +3,9 @@ import img from "@/public/black-friday-shopping.jpg";
 import ProductDetails from "./ProductDetails";
 import { getCollection } from "@/lib/db";
 import Item from "./Item";
+import { WithId, Document } from "mongodb";
+
+// Function to fetch products from the fake store API
 async function getProducts() {
   try {
     const res = await fetch("https://fakestoreapi.com/products", {
@@ -47,16 +50,17 @@ const ProductPage = async ({ id }: { id: string }) => {
   // userproducts
   const addedProducts = await getCollection("products");
   const rawAddedProducts = await addedProducts.find().toArray();
-  const addedProductsData: newObject[] = rawAddedProducts.map((doc: any) => ({
-    category: doc.category,
-    description: doc.description,
-    price: doc.price,
-    title: doc.title,
-    image: doc.image,
-    userId: doc.userId.toString(),
-    // convert ObjectId to string
-    _id: doc._id.toString() ?? "",
-  }));
+  const addedProductsData: newObject[] = rawAddedProducts.map(
+    (doc: WithId<Document>) => ({
+      category: doc.category,
+      description: doc.description,
+      price: doc.price,
+      title: doc.title,
+      image: doc.image,
+      userId: doc.userId.toString(),
+      _id: doc._id.toString(),
+    })
+  );
   const userProduct = addedProductsData.find((p) => p._id === id);
   //  check if two products exist
   if (!product && !userProduct) {

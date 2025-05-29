@@ -2,7 +2,7 @@
 import addNewProducts from "@/action/product";
 import { useActionState } from "react";
 
-const addProduct = () => {
+const AddProduct = () => {
   const [state, action, isPending] = useActionState(addNewProducts, undefined);
   return (
     <div className="bg-gray-700 min-h-screen flex flex-col items-center pb-5 ">
@@ -74,7 +74,7 @@ const addProduct = () => {
           </div>
 
           <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors">
-            Add
+            {isPending ? "adding..." : "add"}{" "}
           </button>
         </form>
       </div>
@@ -82,4 +82,4 @@ const addProduct = () => {
   );
 };
 
-export default addProduct;
+export default AddProduct;
