@@ -34,7 +34,7 @@ type newObject = {
   userId: string;
   _id: string;
 };
-const Men = async () => {
+const AllProduct = async () => {
   // product data from fake store API
   const products = await getProducts();
   if (!products || products.length === 0) {
@@ -59,7 +59,7 @@ const Men = async () => {
           ))}
         </WrapperItems>
       </CategoriesPage>
-      <CategoriesPage title="Products added by users">
+      {/* <CategoriesPage title="Products added by users">
         <WrapperItems>
           {addedProductsData.map((p) => {
             const userProduct: newObject = {
@@ -70,12 +70,12 @@ const Men = async () => {
               userId: p.userId ?? "",
               _id: p._id.toString(),
             };
-            return <Item key={userProduct._id} fakeproduct={p} />;
+            return <Item key={userProduct._id} fakeproduct={userProduct} />;
           })}
         </WrapperItems>
-      </CategoriesPage>
+      </CategoriesPage> */}
     </div>
   );
 };
 
-export default Men;
+export default AllProduct;

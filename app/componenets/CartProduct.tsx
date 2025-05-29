@@ -11,13 +11,13 @@ const CartProduct = ({
   price,
   id,
 }: {
-  img: string;
+  img?: string;
   title: string;
   category: string;
   size?: string;
   quantity: number;
   price: string;
-  id: number;
+  id: number | string;
 }) => {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
@@ -29,7 +29,7 @@ const CartProduct = ({
             className="h-full rounded-xl"
             width={300}
             height={300}
-            src={img}
+            src={img || ""}
             alt="product"
           />
         </div>
@@ -44,7 +44,7 @@ const CartProduct = ({
       <p className="product-total-price col-span-1">${+price * quantity}</p>
       <button
         className="col-span-1 h-fit w-fit"
-        onClick={() => removeFromCart(id, size ?? "")}
+        onClick={() => removeFromCart(+id, size ?? "")}
       >
         <MdDelete className="text-3xl text-red-800" />
       </button>

@@ -154,7 +154,11 @@ const ProductPage = async ({ id }: { id: string }) => {
               <p>Category : {product?.category || userProduct?.category}</p>
               <p>Rate : {product?.rating.rate || "recently uploaded"}</p>
             </div>
-            <ProductDetails fakeproduct={product || userProduct} />
+            {(product || userProduct) && (
+              <ProductDetails
+                fakeproduct={(product as Object) || (userProduct as newObject)}
+              />
+            )}
           </div>
         </div>
       </div>

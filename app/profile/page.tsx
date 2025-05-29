@@ -18,15 +18,26 @@ const profile = async () => {
   console.log("User in profile page:", user);
   const userinfo = await getCollection("users");
   const userdata = await userinfo.findOne({
-    _id: ObjectId.createFromHexString(user?.userId),
+    _id: ObjectId.createFromHexString(user?.userId as string),
   });
   console.log("User data:", userdata?.username);
 
   // show user products
   const productCollection = await getCollection("products");
-  const userProducts = await productCollection
-    .find({ userId: ObjectId.createFromHexString(user.userId) })
-    .toArray();
+  // Define a type for your product documents
+  type Product = {
+    _id: ObjectId;
+    category: string;
+    price: number;
+    title: string;
+    userId: ObjectId;
+    image: string;
+    [key: string]: any;
+  };
+
+  const userProducts = (await productCollection
+    .find({ userId: ObjectId.createFromHexString(user.userId as string) })
+    .toArray()) as Product[];
   console.log("User products:", userProducts);
   return (
     <div className="profile  flex flex-col items-center justify-center gap-5 ">
@@ -51,7 +62,14 @@ const profile = async () => {
         <h2 className="text-2xl">Your Products</h2>
         <div className="shadow  flex px-5 flex-wrap gap-5 justify-center ">
           {userProducts.map((p) => (
-            <Item key={p._id.toString()} fakeproduct={p} />
+            <Item
+              key={p._id.toString()}
+              fakeproduct={{
+                ...p,
+                _id: p._id.toString() as any,
+                price: p.price.toString(),
+              }}
+            />
           ))}
         </div>
       </div>

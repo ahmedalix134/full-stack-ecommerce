@@ -1,6 +1,7 @@
 import Image from "next/image";
 import img from "@/public/black-friday-shopping.jpg";
 import Link from "next/link";
+import { WithId } from "mongodb";
 // //  types for fakestore products
 type Object = {
   category: string;
@@ -24,8 +25,16 @@ type newObject = {
   image: string;
   _id: string;
 };
+type Product = {
+  _id: Object;
+  [key: string]: any;
+};
 
-const Item = ({ fakeproduct }: { fakeproduct: Object | newObject }) => {
+const Item = ({
+  fakeproduct,
+}: {
+  fakeproduct: Object | newObject | Product;
+}) => {
   return (
     <Link
       href={`/show/${"id" in fakeproduct ? fakeproduct.id : fakeproduct._id}`}

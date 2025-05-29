@@ -19,7 +19,15 @@ const Cart = () => {
               <p className="col-span-1">total</p>
             </div>
             {items.map((i) => (
-              <CartProduct key={i.title + i.size} {...i} />
+              <CartProduct
+                key={i.title + i.size}
+                img={i.img}
+                title={i.title}
+                category={i.category}
+                quantity={i.quantity}
+                price={i.price}
+                id={i.id}
+              />
             ))}
           </>
         )}
