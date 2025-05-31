@@ -20,23 +20,23 @@ const order = () => {
             placeholder="Number"
             className="border border-gray-300 p-2 rounded"
           />
-          {/* {state?.errors?.title && (
-            <p className="text-red-500 text-xs">{state.errors.title}</p>
-          )} */}
+          {state?.errors?.number && (
+            <p className="text-red-500 text-xs">{state.errors.number}</p>
+          )}
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="description">description</label>
+          <label htmlFor="address">Address</label>
           <input
             type="text"
             name="address"
             placeholder="Address"
             className="border border-gray-300 p-2 rounded"
           />
-          {/* {state?.errors &&
-            "description" in state.errors &&
-            state.errors.description && (
-              <p className="text-red-500 text-xs">{state.errors.description}</p>
-            )} */}
+          {state?.errors &&
+            "address" in state.errors &&
+            state.errors.address && (
+              <p className="text-red-500 text-xs">{state.errors.address}</p>
+            )}
         </div>
         <input
           type="hidden"
