@@ -48,7 +48,6 @@ const AllProduct = async () => {
   if (addedProductsData.length === 0) {
     return <div className="text-center text-white">No products available</div>;
   }
-  console.log(addedProductsData);
 
   return (
     <div className="products bg-gray-700">
@@ -59,7 +58,7 @@ const AllProduct = async () => {
           ))}
         </WrapperItems>
       </CategoriesPage>
-      {/* <CategoriesPage title="Products added by users">
+      <CategoriesPage title="Products added by users">
         <WrapperItems>
           {addedProductsData.map((p) => {
             const userProduct: newObject = {
@@ -70,10 +69,10 @@ const AllProduct = async () => {
               userId: p.userId ?? "",
               _id: p._id.toString(),
             };
-            return <Item key={userProduct._id} fakeproduct={userProduct} />;
+            return <Item key={userProduct._id} fakeproduct={p} />;
           })}
         </WrapperItems>
-      </CategoriesPage> */}
+      </CategoriesPage>
     </div>
   );
 };

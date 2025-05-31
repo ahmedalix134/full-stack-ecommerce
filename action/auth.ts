@@ -28,7 +28,6 @@ export const signup = async (
     };
   }
 
-  console.log(validation);
   // If validation is successful, extract the validated data
   const { email, username, password } = validation.data;
 
@@ -69,8 +68,6 @@ export const signup = async (
   // redirect
 
   redirect("/");
-
-  console.log("userCollection", userCollection);
 };
 
 export const login = async (
@@ -103,7 +100,6 @@ export const login = async (
     return { errors: { password: "password is incorrect" } };
   // create a session for the user
   await createSession(existingUser._id.toString());
-  console.log(existingUser);
   // redirect
   redirect("/");
 };

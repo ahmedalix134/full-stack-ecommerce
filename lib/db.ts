@@ -16,7 +16,6 @@ const client = new MongoClient(process.env.DB_URI, {
 const connectToDatabase = async (dbName: string) => {
   try {
     await client.connect();
-    console.log("Connected to MongoDB");
     return client.db(dbName);
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);

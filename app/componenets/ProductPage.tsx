@@ -5,6 +5,8 @@ import ProductDetails from "./ProductDetails";
 import { getCollection } from "@/lib/db";
 import Item from "./Item";
 import { WithId, Document } from "mongodb";
+import getAuthUser from "@/lib/getAuthUser";
+import Link from "next/link";
 
 // Function to fetch products from the fake store API
 async function getProducts() {
@@ -45,6 +47,8 @@ type newObject = {
 };
 
 const ProductPage = async ({ id }: { id: string }) => {
+  const user = await getAuthUser();
+
   // fake store products
   const products: Object[] = await getProducts();
   const product = products.find((p) => p.id === +id);
@@ -154,10 +158,22 @@ const ProductPage = async ({ id }: { id: string }) => {
               <p>Category : {product?.category || userProduct?.category}</p>
               <p>Rate : {product?.rating.rate || "recently uploaded"}</p>
             </div>
-            {(product || userProduct) && (
-              <ProductDetails
-                fakeproduct={(product as Object) || (userProduct as newObject)}
-              />
+            {user ? (
+              (product || userProduct) && (
+                <ProductDetails
+                  fakeproduct={
+                    (product as Object) || (userProduct as newObject)
+                  }
+                />
+              )
+            ) : (
+              <div>
+                <Link href={"/login"}>
+                  <p className="text-red-500 text-center hover:underline">
+                    Please login to add products to cart.
+                  </p>
+                </Link>
+              </div>
             )}
           </div>
         </div>

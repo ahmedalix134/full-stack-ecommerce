@@ -52,5 +52,4 @@ export default async function addNewProducts(
   }
   // redirect to the home page after successful product addition
   redirect("/profile");
-  // If you want to handle file uploads, you can uncomment the following lines
 }

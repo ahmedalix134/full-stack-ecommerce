@@ -30,7 +30,6 @@ type Object = {
 const NewCollection = async () => {
   const products = await getProducts();
   const newCollectionProducts = products.slice(0, 8);
-  console.log(products, newCollectionProducts);
   return (
     <WrapperItems title="New Collection">
       {newCollectionProducts.map((p: Object) => (

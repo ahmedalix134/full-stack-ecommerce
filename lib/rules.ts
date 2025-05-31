@@ -64,3 +64,16 @@ export const addProductFormSchema = z.object({
     .max(10000, { message: "Price must not exceed $10,000" }),
   category: z.string().min(1, { message: "Category is required" }),
 });
+
+export const addOrderFormSchema = z.object({
+  address: z
+    .string()
+    .min(1, { message: "Address is required" })
+    .min(5, { message: "Address must be at least 5 characters long" })
+    .trim(),
+  number: z
+    .string()
+    .min(1, { message: "Number is required" })
+    .min(10, { message: "Number must be at least 10 digits long" })
+    .regex(/^\d+$/, { message: "Number must be digits only" }),
+});

@@ -33,7 +33,7 @@ type Product = {
 const Item = ({
   fakeproduct,
 }: {
-  fakeproduct: Object | newObject | Product;
+  fakeproduct: Object | newObject | Product | any;
 }) => {
   return (
     <Link

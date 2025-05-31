@@ -1,6 +1,7 @@
 "use client";
 import { useCartStore } from "@/app/store/CartStore";
 import CartProduct from "../componenets/CartProduct";
+import Link from "next/link";
 
 const Cart = () => {
   const items = useCartStore((state) => state.items);
@@ -43,9 +44,11 @@ const Cart = () => {
           </p>
         </div>
         <div className="checkout w-full ">
-          <button className="w-full bg-black text-white rounded-full px-3 py-2">
-            Check Out
-          </button>
+          <Link href={"/order"}>
+            <button className="w-full px-3 py-2 bg-black text-white rounded-2xl">
+              check out
+            </button>
+          </Link>
         </div>
       </div>
     </div>

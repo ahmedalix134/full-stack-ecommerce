@@ -66,10 +66,12 @@ const ProductDetails = ({
     }));
   };
   const handleAddToCart = () => {
-    // if (count === 0 || productDetails.size === "") {
-    //   alert("Please select a size and quantity before adding to cart.");
-    //   return;
-    // }
+    // Check if size is selected and count is greater than 0
+    if (productDetails.size === null || count === 0) {
+      alert("Please select a size and Quantity.");
+    } else {
+      alert("Product added to cart successfully!");
+    }
     // Check if the product is already in the cart
     const existingItem = items.find(
       (item) =>
@@ -95,7 +97,6 @@ const ProductDetails = ({
       quantity: count,
     });
   };
-  console.log(fakeproduct);
   return (
     <div className="flex flex-col gap-5">
       {fakeproduct?.category === "men's clothing" ||
@@ -150,14 +151,20 @@ const ProductDetails = ({
           </button>
         </div>
         <button
-          disabled={
-            count === 0 ||
-            ((fakeproduct.category === "men's clothing" ||
-              fakeproduct.category === "women's clothing") &&
-              productDetails.size === "")
-          }
-          onClick={handleAddToCart}
-          className=" flex items-center justify-center rounded-4xl px-5 py-3 cursor-pointer group  max-sm:w-full gap-3 bg-black text-white w-[50%]"
+          onClick={() => {
+            // For clothing, require size and quantity
+            if (
+              count === 0 ||
+              ((fakeproduct.category === "men's clothing" ||
+                fakeproduct.category === "women's clothing") &&
+                productDetails.size === "")
+            ) {
+              alert("Please select a size and quantity.");
+              return; // Prevent further action
+            }
+            handleAddToCart();
+          }}
+          className="flex items-center justify-center rounded-4xl px-5 py-3 cursor-pointer group max-sm:w-full gap-3 bg-black text-white w-[50%]"
         >
           Add To Cart
           <FaShoppingCart className="group-hover:translate-x-4 duration-150" />
