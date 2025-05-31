@@ -45,7 +45,14 @@ const Cart = () => {
         </div>
         <div className="checkout w-full ">
           <Link href={"/order"}>
-            <button className="w-full px-3 py-2 bg-black text-white rounded-2xl">
+            <button
+              onClick={() =>
+                alert(
+                  "your specials stay in the cart so if there is a delivery error donnot lose and reorder"
+                )
+              }
+              className="w-full px-3 py-2 bg-black text-white rounded-2xl"
+            >
               check out
             </button>
           </Link>
