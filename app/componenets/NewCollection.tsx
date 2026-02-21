@@ -29,6 +29,9 @@ type Object = {
 
 const NewCollection = async () => {
   const products = await getProducts();
+  if (!products) {
+    return <div>Loading...</div>;
+  }
   const newCollectionProducts = products.slice(0, 8);
   return (
     <WrapperItems title="New Collection">

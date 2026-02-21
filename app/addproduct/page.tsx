@@ -1,5 +1,5 @@
 "use client";
-import addNewProducts from "@/action/product";
+import {addNewProducts} from "@/action/product";
 import { useActionState } from "react";
 
 const AddProduct = () => {

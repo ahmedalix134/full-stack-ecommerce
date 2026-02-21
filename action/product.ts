@@ -6,7 +6,7 @@ import { addProductFormSchema } from "@/lib/rules";
 import { ObjectId } from "mongodb";
 import { redirect } from "next/navigation";
 
-export default async function addNewProducts(
+export async function addNewProducts(
   state: any,
   formData: { get: (arg0: string) => any }
 ) {
@@ -52,4 +52,22 @@ export default async function addNewProducts(
   }
   // redirect to the home page after successful product addition
   redirect("/profile");
+}
+export async function deleteProduct(formData: { get: (arg0: string) => any }) {
+  // check if user signed in
+  const userAuth = await getAuthUser();
+  if (!userAuth) redirect("/signup");
+  // find the product by id
+
+  const productId = formData.get("productId");
+  if (!productId) return redirect("/profile");
+
+  const productCollection = getCollection("products");
+  const product: any = (await productCollection).findOne({
+    _id: ObjectId.createFromHexString(productId),
+  });
+  //  check if user own the product
+  // if (userAuth.id !== product.userId.toString()) return redirect("/");
+  // delete product
+  (await productCollection).findOneAndDelete({ _id: product._id });
 }

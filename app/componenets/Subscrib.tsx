@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 const Subscrib = () => {
@@ -6,7 +7,7 @@ const Subscrib = () => {
       <h1 className="text-2xl font-semibold max-sm:text-xl">
         Subscribe Now and get 20% off
       </h1>
-      <div className=" flex items-center max-sm:w-80   w-100 h-20 relative ">
+      <div className="flex items-center max-sm:w-80 w-full h-20 relative">
         <input
           className="w-full h-full rounded-2xl px-3 border border-solid "
           type="email"

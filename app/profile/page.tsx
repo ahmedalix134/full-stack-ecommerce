@@ -5,6 +5,7 @@ import { getCollection } from "@/lib/db";
 import { ObjectId } from "mongodb";
 import AnimateProfile from "../componenets/AnimateProfile";
 import { FaUser } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const profile = async () => {
   const user = await getAuthUser();
@@ -46,11 +47,12 @@ const profile = async () => {
     .find({ userId: ObjectId.createFromHexString(user.userId as string) })
     .toArray()) as Product[];
 
+  const products = JSON.parse(JSON.stringify(userProducts));
+
   const userOrders = (await orderCollection
     .find({ userId: ObjectId.createFromHexString(user.userId as string) })
     .toArray()) as Order[];
 
-  console.log("userOrders", userOrders);
   return (
     <div className="profile  flex flex-col items-center justify-center gap-5 ">
       <div className="profile-hero h-dvh flex items-center justify-center w-full">
@@ -70,21 +72,7 @@ const profile = async () => {
           </p>
         </div>
       </div>
-      <div className="your-products py-5 flex flex-col items-center justify-center gap-5">
-        <h2 className="text-2xl">Your Products</h2>
-        <div className="shadow  flex px-5 flex-wrap gap-5 justify-center ">
-          {userProducts.map((p) => (
-            <Item
-              key={p._id.toString()}
-              fakeproduct={{
-                ...p,
-                _id: p._id.toString() as any,
-                price: p.price.toString(),
-              }}
-            />
-          ))}
-        </div>
-      </div>
+
       <div className="your-orders py-5 flex flex-col items-center justify-center gap-5 ">
         <h2 className="text-2xl">Your Orders</h2>
         <div className="shadow flex px-5 flex-wrap gap-5 justify-center">
@@ -136,6 +124,14 @@ const profile = async () => {
               ))}
             </div>
           )}
+        </div>
+      </div>
+      <div className="your-products py-5 flex flex-col items-center justify-center gap-5">
+        <h2 className="text-2xl">Your Products</h2>
+        <div className="shadow  flex px-5 flex-wrap gap-5 justify-center ">
+          {products.map((p: Product) => (
+            <Item icon={<MdDelete />} key={p._id.toString()} fakeproduct={p} />
+          ))}
         </div>
       </div>
     </div>
